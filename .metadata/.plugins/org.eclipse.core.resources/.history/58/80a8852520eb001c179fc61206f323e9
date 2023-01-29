@@ -1,0 +1,22 @@
+package FrutasRibera;
+
+public class Pedido {
+	public int codigoPedido;
+	public int dniCliente;
+	public double total;
+
+	public Pedido(int codigoPedido, int dniCliente, double total) {
+		super();
+		this.codigoPedido = codigoPedido;
+		this.dniCliente = dniCliente;
+		this.total = total;
+	}
+
+	public Pedido() {
+		super();
+		this.codigoPedido = 0;
+		this.dniCliente = 0;
+		this.total = 0;
+	}
+
+}

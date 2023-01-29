@@ -1,0 +1,8 @@
+***************Cliente*************************
+Luis Pérez aqui iria la variable total
+***************Cliente*************************
+Antonio Sánchez aqui iria la variable total
+***************Cliente*************************
+Carlos Vega aqui iria la variable total
+***************Cliente*************************
+Pablo Mora aqui iria la variable total

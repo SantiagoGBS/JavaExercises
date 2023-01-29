@@ -1,0 +1,17 @@
+package CondicionalesyBucles;
+
+public class Ejercicio24 {
+
+	public static void main(String[] args) {
+		//24. Dibuja un cuadrado de n elementos de lado utilizando *.
+		int n=0;
+		int i=0;
+		while(i<12) {
+			i++;
+			
+		}
+		
+
+	}
+
+}

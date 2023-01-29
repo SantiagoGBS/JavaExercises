@@ -1,0 +1,30 @@
+package PracticaUT6;
+
+public class Prueba1 {
+
+	public static void main(String[] args) {
+		int[] array = new int[] { 3, 3, 5, 4, 1, 4, 4 };
+
+		int maximo = 1;
+		for (int i = 0; i < array.length; i++) {
+			int seguido = 0;
+			for (int a = i + 1; a < array.length; a++) {
+
+				if (array[i] == array[a]) {
+					seguido++;
+				}
+				if (array[i] != array[a]) {
+					seguido = 0;
+				}
+				if (seguido > 0 && seguido > maximo) {
+					maximo = maximo + seguido;
+
+				}
+
+			}
+		}
+		System.out.println(maximo);
+
+	}
+
+}

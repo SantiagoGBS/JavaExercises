@@ -1,0 +1,6 @@
+1646239848414	Encapsulate field 'pruebaautoencapsular'
+1646322265211	Encapsulate field 'cuenta'
+1646322289200	Encapsulate field 'saldo'
+1646322304119	Encapsulate field 'interes'
+1646323281823	Extract method 'operarEnCuenta'
+1646323936725	Change method 'operarEnCuenta'

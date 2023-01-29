@@ -1,0 +1,29 @@
+package Cadenas;
+
+import java.util.Scanner;
+
+public class Ejercicio4 {
+
+	public static void main(String[] args) {
+		String variable;
+		String variable2;
+		Scanner s=new Scanner(System.in);
+		System.out.println("Dame una palabra");
+		String cadena=s.next();
+		//Imprimo por pantalla la cadena
+		for(int i=0; i<cadena.length();i++) {
+			System.out.println(cadena.charAt(i));
+			variable=cadena.charAt(i);
+		}
+		
+		//imprimo por pantalla la cadena al reves
+		for(int i=cadena.length()-1;i>=0;i--) {
+			System.out.print(cadena.charAt(i));
+			variable2=cadena.charAt(i);
+		}
+		if(variable.equals(variable2)) {
+			System.out.println("Es un palindromo");
+		}
+	}
+
+}

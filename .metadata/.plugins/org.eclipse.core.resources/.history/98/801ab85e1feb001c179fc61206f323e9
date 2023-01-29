@@ -1,0 +1,6 @@
+package FrutasRibera;
+
+public class Empleado extends Persona {
+	public int turno;
+
+}

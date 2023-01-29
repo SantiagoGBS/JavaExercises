@@ -1,0 +1,100 @@
+package ejercicio2;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Programa {
+//	private ArrayList<Alumno> alumnos;
+	private ArrayList<Alumno> daw;
+	private ArrayList<Alumno> dam;
+
+	public Programa(ArrayList<Alumno> daw, ArrayList<Alumno> dam) {
+		super();
+		this.daw = new ArrayList();
+		this.dam = new ArrayList();;
+	}
+
+	public ArrayList<Alumno> getDaw() {
+		return daw;
+	}
+
+	public void setDaw(ArrayList<Alumno> daw) {
+		this.daw = daw;
+	}
+
+	public ArrayList<Alumno> getDam() {
+		return dam;
+	}
+
+	public void setDam(ArrayList<Alumno> dam) {
+		this.dam = dam;
+	}
+
+	@Override
+	public String toString() {
+		return "Programa [daw=" + daw + ", dam=" + dam + "]";
+	}
+
+	public void leerFicheroCSV(String filename) {
+
+		File CSV = new File("alumnos.csv");
+		try {
+			String[] espacio;
+			Scanner sc = new Scanner(CSV);
+			sc.nextLine();
+			while (sc.hasNext()) {
+				espacio = sc.nextLine().split(";");
+				if (espacio[4].equalsIgnoreCase(" daw")) {
+					this.daw.add(new Alumno(Integer.parseInt(espacio[0]), espacio[1], espacio[2],
+							Double.parseDouble(espacio[3]), espacio[4]));
+				} else
+					this.dam.add(new Alumno(Integer.parseInt(espacio[0]), espacio[1], espacio[2],
+							Double.parseDouble(espacio[3]), espacio[4]));
+
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error en ficheros alumno");
+		}
+
+	}
+
+	public double media(ArrayList<Alumno> daw) {
+		double avg = 0;
+		for (int i = 0; i < daw.size(); i++) {
+			avg = avg; // aqui tendria que darle la nota media con un getnotaMedia pero no se porque no
+						// me lo coge.
+		}
+		avg = avg / daw.size();
+		return avg;
+
+	}
+
+	public void escribirCSVDAW(String filename, double media) {
+		PrintWriter escritura = null;
+		try {
+			PrintWriter salida = new PrintWriter("notamediadaw.csv");
+			//me pasa como en el anterior. No me deja coger la nota media ni el codigo, ni nombre ni nada. Pero seria asi
+			
+			for(int i=0; i<daw.size();i++) {
+				if(daw.get(i).getNotaMedia() >avg) {
+					escritura.println((daw.getCodigo()+";"+daw.getNombre()+";"+daw.getApellido()+";"+daw.getNotaMedia()+";"+
+							daw.getCurso());
+				}
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error en escritura nota CSV DAW");
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		escribirCSVDAW();
+		leerFicheroCSV();
+
+	}
+
+}

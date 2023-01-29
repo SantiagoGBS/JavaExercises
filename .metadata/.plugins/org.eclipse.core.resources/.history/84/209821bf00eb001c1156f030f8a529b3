@@ -1,0 +1,18 @@
+package Ejercicios;
+
+import java.util.Scanner;
+
+public class e6 {
+
+	public static void main(String[] args) {
+		int numero =0;
+		int suma =0;
+		int contador =0;
+		Scanner sn = new Scanner(System.in);
+		System.out.print("Introduce un numero");
+		numero = sn.nextInt();
+		
+
+	}
+
+}

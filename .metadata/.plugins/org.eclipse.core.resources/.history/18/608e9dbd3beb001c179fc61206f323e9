@@ -1,0 +1,51 @@
+package FrutasRibera;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+public class App implements Informe {
+	@Override
+	public void informeVentas() {
+
+	}
+
+	public static void main(String[] args) {
+		String linea;
+		BD bbdd = BD.getInstance();
+		bbdd.cargarParametrosConexion();
+		ArrayList<Cliente> clientes = bbdd.cargaClientes();
+		if (args.length == 0) {
+			File informeFile = new File("Ventas2022.txt");
+			try {
+				PrintWriter salida = new PrintWriter(informeFile);
+
+				for (Cliente i : clientes) {
+					salida.println("***************Cliente*************************");
+					salida.println(i.getNombre() + " " + i.getApellidos() +" aqui iria la variable total");
+//					salida.println(i.getMetodoPago());
+
+				}
+				salida.flush();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+
+			linea = args[0].split("=")[1];
+
+			for (Cliente a : clientes) {
+				a.asignarmetodoPago();
+				a.cargaHistorico();
+				System.out.println("Cliente:" + a.getNombre() + " " + a.getApellidos());
+				System.out.println("Metodo de pago:" + a.metodoPago);
+				System.out.println("Pedidos realizados en 2022: " + a.historicoPedidos);
+				System.out.println("Importe total ");
+
+			}
+
+		}
+	}
+}

@@ -1,0 +1,29 @@
+package EDD;
+
+import java.util.LinkedList;
+
+public class Pila<T> {
+	private LinkedList<T> pila;
+
+	// creamos un constructor con el nombre de la clase
+	public Pila() {
+		// declaramos el objeto
+		this.pila = new LinkedList<>();
+	}
+
+	public void push(T elemento) {
+		this.pila.addLast(elemento);
+	}
+
+	public T pop() {
+		return this.pila.removeLast();
+	}
+
+	public boolean isEmpty() {
+		if (this.pila.size() == 0) {
+			return true;
+		} else
+			return false;
+
+	}
+}

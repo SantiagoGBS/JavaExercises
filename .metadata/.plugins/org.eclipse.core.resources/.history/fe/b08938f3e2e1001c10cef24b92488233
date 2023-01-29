@@ -1,0 +1,65 @@
+package InfoRibera;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class App {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		if (args.length != 0) {
+			if (args[0].contains("--profesor")) {
+				String[] linea;
+				int codigoprofe;
+				BD bbdd = BD.getInstance();
+				String nombreprofesor = "";
+				String apellido = "";
+				String codigoasignatura = "";
+				String nombreasignatura = "";
+				int horas = 0;
+				bbdd.cargarParametrosConexion();
+				linea = args[0].split("=");
+				// linea0 es lo anterior al = del split y lo posterior es el codigo
+				codigoprofe = Integer.parseInt(linea[1]);
+				try {
+					ResultSet rset2 = bbdd
+							.consultaBD("select nombre, apellidos from personas where codigo=" + codigoprofe);
+					while (rset2.next()) {
+						nombreprofesor = rset2.getString(1);
+						apellido = rset2.getString(2);
+
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					int horasdocencia = 0;
+					ResultSet rset = bbdd.consultaBD(
+							"select codigo, nombre, numhoras from modulos where cod_profesor= " + codigoprofe);
+					System.out.println("Módulos que imparte el profesor " + nombreprofesor + " " + apellido);
+					while (rset.next()) {
+						System.out.println(rset.getString(1) + " - " + rset.getString(2));
+						horas += Integer.parseInt(rset.getString(3));
+
+					}
+					System.out.println("Horas de docencia:" + " " + horas);
+					rset.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Profesor inexistente");
+				}
+			}
+			if (args[0].contains("–fichero-notas=")) {
+				String cadena[];
+				String archivo = cadena[1].split;
+				BD bbdd = BD.getInstance();
+				bbdd.cargarParametrosConexion();
+				fichero = args[1].split("=");
+
+			}
+		}
+	}
+
+}

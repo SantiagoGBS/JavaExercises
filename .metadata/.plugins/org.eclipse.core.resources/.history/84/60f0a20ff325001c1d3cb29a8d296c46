@@ -1,0 +1,20 @@
+package CondicionalesyBucles;
+
+import java.util.Scanner;
+
+public class Ejercicio24 {
+
+	public static void main(String[] args) {
+		//24. Dibuja un cuadrado de n elementos de lado utilizando *.
+		int n=1;
+		int c=0;
+		Scanner s=new Scanner(System.in);
+		n=s.nextInt();
+		
+		for(int i=0;i==n;i++) {
+			system.out.println("*");
+		}
+			
+		}
+
+}

@@ -1,0 +1,14 @@
+package zzzExamen2;
+
+import java.util.ArrayList;
+
+public class App {
+	public static void main(String[] args) {
+		BD bbdd = BD.getInstance();
+		bbdd.cargarParametrosConexion();
+		ArrayList<Empleado> empleados = bbdd.cargaEmpleados();
+		for (Empleado i : empleados) {
+			System.out.println(i.toString());
+		}
+	}
+}

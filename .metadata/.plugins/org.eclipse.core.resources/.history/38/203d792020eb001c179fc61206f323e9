@@ -1,0 +1,7 @@
+package FrutasRibera;
+
+public class Pedido {
+	public int codigoPedido;
+	public int dniCliente;
+	public double total;
+}

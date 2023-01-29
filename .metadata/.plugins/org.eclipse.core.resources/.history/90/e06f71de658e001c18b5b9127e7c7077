@@ -1,0 +1,91 @@
+package LecturaEscritura;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Correo {
+
+	private String nombreCompleto;
+	private String correo;
+
+	public Correo(String nombreCompleto, String correo) {
+		super();
+		this.nombreCompleto = nombreCompleto;
+		this.correo = correo;
+	}
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
+	}
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	@Override
+	public String toString() {
+		return "Correo [nombreCompleto=" + nombreCompleto + ", correo=" + correo + "]";
+	}
+
+	// METODO para Leer fichero de Alumnos
+	public static ArrayList<String> LeerAlumnos() {
+
+		File fichero = new File("AlumnosDAW.csv");
+		try {
+			Scanner entrada = new Scanner(fichero);
+			// NOS SALTAMOS LAS 5 PRIMERAS LINEAS
+			entrada.nextLine();
+			entrada.nextLine();
+			entrada.nextLine();
+			entrada.nextLine();
+			entrada.nextLine();
+			String cadena = "";
+			String[] linea;
+			String subcadena = "";
+			String nombrecompleto = "";
+			String email = "";
+			while (entrada.hasNext()) {
+				cadena = entrada.nextLine();
+				// System.out.println(cadena);
+				linea = cadena.split(";");
+				// Nombrecompleto
+
+				// System.out.println(linea[0]);
+
+				String[] parte = cadena.split(" ");
+				String parte1 = parte[0];
+				String parte2 = parte[1];
+				String parte3 = parte[2];
+				nombrecompleto = parte[2] + parte[0];
+				String replace = nombrecompleto.replace(';', ' ').replace('1', ' ').replace('º', ' ').replace(',', ' ');
+				replace = replace.trim();
+
+				// System.out.println(email);
+
+				email = "daw1_" + nombrecompleto.toLowerCase() + "@riberadeltajo.es";
+				System.out.println(email.trim());
+
+			}
+
+			entrada.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void main(String[] args) {
+		LeerAlumnos();
+	}
+}

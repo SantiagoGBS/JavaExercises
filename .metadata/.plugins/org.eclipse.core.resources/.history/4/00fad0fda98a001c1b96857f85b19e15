@@ -1,0 +1,18 @@
+package EDD;
+
+public class PruebaPila {
+
+	public static void main(String[] args) {
+		Pila<Integer> mipila=new Pila();
+		Pila <Double> reales=new Pila();
+		Pila <String> expresion =new Pila();
+		
+		mipila.push(1);
+		mipila.push(3);
+		mipila.push(5);
+		mipila.print();
+		
+
+	}
+
+}

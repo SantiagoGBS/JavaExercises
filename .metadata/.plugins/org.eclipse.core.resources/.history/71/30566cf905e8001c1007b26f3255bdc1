@@ -1,0 +1,106 @@
+package zzzExamen2;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Empleado extends Persona {
+
+	public int turno;
+	public ArrayList<Pedido> pedidosAsignados;
+
+	public int getTurno() {
+		return turno;
+	}
+
+	public void setTurno(int turno) {
+		this.turno = turno;
+	}
+
+	public ArrayList<Pedido> getPedidosAsignados() {
+		return pedidosAsignados;
+	}
+
+	public void setPedidosAsignados(ArrayList<Pedido> pedidosAsignados) {
+		this.pedidosAsignados = new ArrayList<>();
+	}
+
+	public Empleado(String dni, String nombre, String apellidos, String direccion, int turno) {
+		super(dni, nombre, apellidos, direccion);
+		this.turno = turno;
+		this.pedidosAsignados = new ArrayList<>();
+	}
+
+	@Override
+	public String toString() {
+		return "Empleado [turno=" + turno + ", pedidosAsignados=" + pedidosAsignados + "]";
+	}
+
+	public void asignarPedidosTurno(String fichero) {
+		ArrayList<Pedido> pedidosasignados = new ArrayList<>();
+		File ficherocsv = new File("Pedidos.csv");
+
+		try {
+			String cadena;
+			String[] trozo;
+			Scanner entrada = entrada = new Scanner(ficherocsv);
+			turno = 0;
+			entrada.nextLine();
+//			Factura f = new Factura();
+			Pedido p = new Pedido();
+			while (entrada.hasNext()) {
+				cadena = entrada.nextLine();
+				trozo = cadena.split(";");
+				if (Integer.parseInt(trozo[4]) == this.turno) {
+					pedidosasignados.add(new Pedido(Integer.parseInt(trozo[1]), trozo[2], Double.parseDouble(trozo[3]),
+							Integer.parseInt(trozo[4])));
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public Factura generarFactura(Pedido p) {
+		Factura f = new Factura(p.getCodigoPedido() + "_" + p.getDniCliente(), p.getCodigoPedido(), p.getDniCliente());
+		BD bbdd = BD.getInstance();
+		bbdd.cargarParametrosConexion();
+		try {
+			File facturaFile = new File("Factura" + p.getDniCliente() + ".txt");
+			PrintWriter salida = new PrintWriter(facturaFile);
+			salida.println("Factura: " + f.getCodigoFactura());
+			salida.println("Cliente: " + f.getDniCliente());
+			salida.println("*******************PRODUCTO**********************");
+			int acumulador = 0;
+			for (ProductoPedido i : f.cargarProductos("ProductosPedido.csv")) {
+				acumulador++;
+				salida.println(acumulador + i.toString());
+			}
+			salida.println("\t" + "Total: " + f.totalSinIVA());
+			salida.println("\t" + "IVA: " + f.ivaReducido());
+			salida.println("\t" + this.getdescuento);
+			salida.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		try {
+//			ResultSet rset = bbdd.consultaBD("insert into Factura values ("+);
+//			while (rset.next()) {
+//				
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		return f;
+
+	}
+
+}

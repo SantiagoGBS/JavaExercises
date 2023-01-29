@@ -1,0 +1,51 @@
+package FrutasRibera;
+
+public class Pedido {
+	public int codigoPedido;
+	public String dniCliente;
+	public double total;
+
+	public Pedido(int codigoPedido, String dniCliente, double total) {
+		super();
+		this.codigoPedido = codigoPedido;
+		this.dniCliente = dniCliente;
+		this.total = total;
+	}
+
+	public Pedido() {
+		super();
+		this.codigoPedido = 0;
+		this.dniCliente = "";
+		this.total = 0;
+	}
+
+	public int getCodigoPedido() {
+		return codigoPedido;
+	}
+
+	public void setCodigoPedido(int codigoPedido) {
+		this.codigoPedido = codigoPedido;
+	}
+
+	public int getDniCliente() {
+		return dniCliente;
+	}
+
+	public void setDniCliente(int dniCliente) {
+		this.dniCliente = dniCliente;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [codigoPedido=" + codigoPedido + ", dniCliente=" + dniCliente + ", total=" + total + "]";
+	}
+
+}

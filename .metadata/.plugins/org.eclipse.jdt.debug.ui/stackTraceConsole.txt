@@ -1,0 +1,8 @@
+if(nu%2==0) {
+				c++;
+				System.out.println("Se han introducido "+c +" pares ");
+			}if(nu%2!=0 & n<10) {
+				
+				aux=aux+n;
+				System.out.println("La suma de los numeros impares es "+aux);
+			}

@@ -1,0 +1,78 @@
+package FrutasRibera;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Cliente extends Persona {
+
+	public String metodoPago;
+	public ArrayList<Pedido> pedidosAsignados;
+
+	public String getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(String metodoPago) {
+		this.metodoPago = metodoPago;
+	}
+
+	public ArrayList<Pedido> getPedidosAsignados() {
+		return pedidosAsignados;
+	}
+
+	public void setPedidosAsignados(ArrayList<Pedido> pedidosAsignados) {
+		this.pedidosAsignados = pedidosAsignados;
+	}
+
+	public Cliente(String dni, String nombre, String apellidos, String direccion, String metodoPago) {
+		super(dni, nombre, apellidos, direccion);
+		this.metodoPago = metodoPago;
+		this.pedidosAsignados = new ArrayList<>();
+	}
+
+	public Cliente() {
+		super();
+		this.metodoPago = "";
+		this.pedidosAsignados = new ArrayList<>();
+
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [metodoPago=" + metodoPago + ", pedidosAsignados=" + pedidosAsignados + "]";
+	}
+
+	public void asignarmetodoPago(String fichero) {
+		File ficherocsv = new File("metodoPagoCliente.csv");
+
+		try {
+			String cadena;
+			String[] trozo;
+			Scanner entrada = entrada = new Scanner(ficherocsv);
+			entrada.nextLine();
+
+			Pedido p = new Pedido();
+			while (entrada.hasNext()) {
+				cadena = entrada.nextLine();
+				trozo = cadena.split(";");
+				if (trozo[0].equals(this.dni)) {
+					this.metodoPago = trozo[1];
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void main(String[] args) {
+		Cliente cliente = new Cliente();
+		cliente.setDni("11111111H");
+		cliente.asignarmetodoPago("metodoPagoCliente.csv");
+		System.out.println(cliente.toString());
+	}
+}

@@ -1,0 +1,64 @@
+package PrimeraOrdinaria;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class factura {
+	public interface impuestos {
+		public double invaReducido();
+
+		public double totalSinIva();
+	}
+
+	public void cargarproductos() {
+		ArrayList<ProductoPedido> cargar = new ArrayList<>();
+		ProductoPedido productopedido;
+		// sin iva
+		String[] linea;
+		File fichero = new File("ProductosPedido.csv");
+		try {
+			Scanner entrada = entrada = new Scanner(fichero);
+			String cadena;
+			double suma = 0;
+			double preciokg = 0;
+			double kg = 0;
+			String producto;
+			do {
+				cadena = entrada.nextLine();
+				linea = cadena.split(";");
+				if (linea[1].equals(1)) {
+					preciokg = Integer.parseInt(linea[5]);
+					kg = Integer.parseInt(linea[6]);
+					suma += preciokg * kg;
+					productopedido = new ProductoPedido(Integer.parseInt(linea[0]), Integer.parseInt(linea[1]),
+							linea[2], linea[3], linea[4], Integer.parseInt(linea[5]), Integer.parseInt(linea[6]));
+					cargar.add(productopedido);
+					System.out.println("\t");
+					preciokg = 0;
+					kg = 0;
+				}
+				if (linea[1].equals(2)) {
+					preciokg = Integer.parseInt(linea[5]);
+					kg = Integer.parseInt(linea[6]);
+					suma += preciokg * kg;
+					productopedido = new ProductoPedido(Integer.parseInt(linea[0]), Integer.parseInt(linea[1]),
+							linea[2], linea[3], linea[4], Integer.parseInt(linea[5]), Integer.parseInt(linea[6]));
+					cargar.add(productopedido);
+					preciokg = 0;
+					kg = 0;
+				}
+
+			} while (entrada.hasNext());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error al leer el csv");
+		}
+		return linea;
+	}
+
+	private void totalSinIVA() {
+
+	}
+}
